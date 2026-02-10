@@ -5,6 +5,16 @@ A production-style **agentic analytics system** that investigates KPI anomalies 
 This is built like an **operational data product**, not a chatbot demo.
 
 ---
+## Demo
+
+### Agent run
+
+![Agent run](screenshots/Agent_Run_1.png)
+![Agent run continued](screenshots/Agent_run_2.png)
+
+### Audit log
+
+![Audit log](screenshots/Audit_Logging.png)
 
 ## What you can ask
 

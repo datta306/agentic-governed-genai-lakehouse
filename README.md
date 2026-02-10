@@ -66,3 +66,4 @@ pip install -r requirements.txt
 python rag/embedding_pipeline.py
 python test_permissions.py
 python agents/planner_agent.py --role finance --question "Why did revenue drop yesterday?"
+Update README with quickstart

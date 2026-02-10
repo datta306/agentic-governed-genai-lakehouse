@@ -53,7 +53,16 @@ The agent:
 
 ## Quickstart (copy/paste)
 
-### 1) Clone the repo
 ```bash
-git clone https://github.com/datta306/agentic-governed-genai-lakehouse.git
-cd agentic-governed-genai-lakehouse
+# 1) Start infra
+docker compose up -d
+
+# 2) Create venv + install deps
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# 3) Build RAG index + run the agent
+python rag/embedding_pipeline.py
+python test_permissions.py
+python agents/planner_agent.py --role finance --question "Why did revenue drop yesterday?"

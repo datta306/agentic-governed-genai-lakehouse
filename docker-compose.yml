@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: genai_postgres
+    environment:
+      POSTGRES_USER: genai
+      POSTGRES_PASSWORD: genai_password
+      POSTGRES_DB: genai_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: genai_qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  postgres_data:
+  qdrant_data:

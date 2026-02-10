@@ -54,7 +54,7 @@ The agent:
 ## Quickstart (copy/paste)
 
 ```bash
-# 1) Start infra
+# 1) Start infra (Docker Compose v2)
 docker compose up -d
 
 # 2) Create venv + install deps
@@ -62,7 +62,7 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-# 3) Build RAG index + run the agent
+# 3) Run the demo (RAG + RBAC + agent)
 python rag/embedding_pipeline.py
 python test_permissions.py
 python agents/planner_agent.py --role finance --question "Why did revenue drop yesterday?"

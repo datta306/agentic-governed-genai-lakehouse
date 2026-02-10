@@ -1,57 +1,59 @@
 # Agentic Governed GenAI Lakehouse
 
-A production-style **agentic analytics system** that investigates KPI anomalies using **governed SQL tool-use**, **RAG-grounded explanations**, and **role-based access control**, with full auditability and daily monitoring.
+A production-style **agentic analytics system** that investigates KPI anomalies using **governed SQL tool-use**, **RAG-grounded explanations**, and **role-based access control (RBAC)** — with auditability and a daily monitoring job.
 
-This project demonstrates how modern GenAI systems should be built **safely, observably, and reproducibly** — not as a chat demo, but as an **operational data product**.
+This is built like an **operational data product**, not a chatbot demo.
 
 ---
 
-## 🔍 Example Question
+## What you can ask
 
-> **Why did revenue drop yesterday?**
+> **"Why did revenue drop yesterday?"**
 
 The agent:
-1. Detects a revenue anomaly
+1. Detects the anomaly from KPI tables
 2. Checks data freshness
 3. Investigates missing SKUs (if role permits)
-4. Grounds the explanation using internal documentation (RAG)
-5. Logs every action for audit & compliance
+4. Grounds explanation using internal docs (RAG)
+5. Logs every tool call with run lineage
 
 ---
 
-## 🧠 Key Features
+## Key features
 
-### 1) Agentic Tool Orchestration
-- LLM-style planner logic that decides **which tools to call and in what order**
-- SQL tools for KPIs, freshness checks, SKU investigation
-- RAG retrieval for trusted explanations
-
-### 2) Governance & Security
-- Role-based access control:
-  - **finance** → SKU-level visibility
-  - **ops** → aggregate-only metrics
-- Permission checks enforced at the **tool layer**
-- All tool calls audited with run lineage
-
-### 3) RAG (Retrieval-Augmented Generation)
-- Internal markdown documentation embedded into Qdrant
-- Semantic retrieval using sentence-transformers
-- Retrieved context is filtered by user role
-- Agent outputs include **document sources**
-
-### 4) Audit, Lineage & Observability
-- PostgreSQL-backed audit tables:
-  - agent runs
-  - tool calls
-  - alert events
-- Every answer is traceable to:
-  - SQL queries
-  - documents used
-  - timestamps
-
-### 5) Daily Anomaly Monitoring Pipeline
-- Scheduled “daily job” checks revenue drops
-- Threshold-based alert creation
-- Triggers deeper agent investigation when anomalies are detected
+- **Agentic tool orchestration**: SQL tools + RAG retrieval called in an intentional order
+- **Governance & security**:
+  - `finance` → allowed SKU-level details
+  - `ops` → aggregate-only metrics
+- **RAG (Retrieval-Augmented Generation)**: Qdrant vector search over internal markdown docs
+- **Audit & lineage**: agent runs + tool calls logged in Postgres
+- **Daily monitoring pipeline**: threshold-based anomaly detection + alert event logging
 
 ---
+
+## Architecture (high level)
+
+- **PostgreSQL**: gold tables + audit schema (+ alerts schema if enabled)
+- **Qdrant**: vector database for RAG
+- **Python**:
+  - `agents/` planner agent
+  - `tools/` governed SQL tools + RAG retriever
+  - `pipelines/` daily monitor job
+  - `governance/` RBAC + lineage logger
+
+---
+
+## Prerequisites
+
+- Docker Desktop installed and running
+- Python 3.10+ (3.11 recommended)
+- On Docker v2, use: **`docker compose`** (not `docker-compose`)
+
+---
+
+## Quickstart (copy/paste)
+
+### 1) Clone the repo
+```bash
+git clone https://github.com/datta306/agentic-governed-genai-lakehouse.git
+cd agentic-governed-genai-lakehouse

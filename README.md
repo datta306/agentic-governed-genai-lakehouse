@@ -16,6 +16,17 @@ This is built like an **operational data product**, not a chatbot demo.
 
 ![Audit log](screenshots/Audit_Logging.png)
 
+---
+
+## Quickstart (Run locally)
+
+This project can be run locally in under 5 minutes.
+
+### 1) Clone the repository
+```bash
+git clone https://github.com/datta306/agentic-governed-genai-lakehouse.git
+cd agentic-governed-genai-lakehouse
+
 ## What you can ask
 
 > **"Why did revenue drop yesterday?"**
